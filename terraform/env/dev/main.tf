@@ -1,9 +1,8 @@
-provider "aws" {
-    region  = "ap-northeast-1"
+locals {
+    cluster_name    = "eks-sample-clustar"
+    cluster_version = "1.20.7"
 }
 
-resource "aws_instance" "test" {
-    ami             = "ami-032d6db78f84e8bf5"
-    instance_type   = "t3.micro"
-    subnet_id       = "subnet-06b7c9a0e8e05ae20"
+provider "aws" {
+    region  = "ap-northeast-1"
 }
