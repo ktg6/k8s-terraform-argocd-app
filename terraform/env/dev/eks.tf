@@ -3,20 +3,18 @@ module "eks" {
     version         = "18.2.1"
     cluster_name    = local.cluster_name
     cluster_version = local.cluster_version
-    # subnets         = module.vpc.public_subnets
+    subnet_ids      = module.vpc.public_subnets
 
     vpc_id          = module.vpc.vpc_id
 
-    # node_groups = {
-    #     ng-1 = {
-    #         desired_capacity = 2
-    #         max_capacity     = 2
-    #         min_capacity     = 2
-    #         instance_types   = ["t3.small"]
-    #     }
-    # }
-
-    # write_kubeconfig = false
+    eks_managed_node_groups= {
+        ng-1 = {
+            desired_capacity = 2
+            max_capacity     = 2
+            min_capacity     = 2
+            instance_types   = ["t3.small"]
+        }
+    }
 }
 
 data "aws_eks_cluster" "cluster" {
