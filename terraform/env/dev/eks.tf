@@ -35,3 +35,8 @@ resource "aws_launch_template" "eks_sample" {
     ]
   }
 }
+
+resource "aws_autoscaling_attachment" "eks_sample" {
+  autoscaling_group_name = module.eks.node_groups["ng-1"].resources[0].autoscaling_groups[0].name
+  alb_target_group_arn   = aws_lb_target_group.sample_alb_tg.arn
+}
