@@ -3,7 +3,7 @@ resource "aws_lb" "sample_alb" {
   internal           = false
   load_balancer_type = "application"
   # security_groups    = [aws_security_group.lb_example.id]
-  subnets            = module.vpc.public_subnets
+  subnets = module.vpc.public_subnets
 }
 
 resource "aws_lb_listener" "sample_alb" {
