@@ -22,4 +22,8 @@ resource "aws_lb_target_group" "sample_alb_tg" {
   port     = 30001
   protocol = "HTTP"
   vpc_id   = module.vpc.vpc_id
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
