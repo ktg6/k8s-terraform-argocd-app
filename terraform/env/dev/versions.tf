@@ -8,7 +8,7 @@ provider "aws" {
   profile = var.aws_profile
 }
 
-terraform {
-  backend "s3" {}
-}
+# terraform {
+#   backend "s3" {}
+# }
 

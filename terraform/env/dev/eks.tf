@@ -3,9 +3,10 @@ module "eks" {
   version         = "17.24.0"
   cluster_name    = local.cluster_name
   cluster_version = local.cluster_version
-  subnets         = module.vpc.public_subnets
-
-  vpc_id = module.vpc.vpc_id
+  # subnets         = module.network.private_subnet_cidrs
+  subnets         = var.public_subnet_cidrs
+  # vpc_id = module.vpc.vpc_id
+  vpc_id = module.network.vpc_id
 
   node_groups = {
     ng-1 = {
