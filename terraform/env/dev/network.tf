@@ -1,6 +1,5 @@
 data "aws_availability_zones" "available" {}
 
-## sample code 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "3.11.3"
