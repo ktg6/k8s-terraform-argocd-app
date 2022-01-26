@@ -1,20 +1,20 @@
 data "aws_availability_zones" "available" {}
 
 ## sample code 
-# module "vpc" {
-#   source  = "terraform-aws-modules/vpc/aws"
-#   version = "3.11.3"
+module "vpc" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "3.11.3"
 
-#   name           = "k8s-terraform-smaple-vpc"
-#   cidr           = var.vpc_cidr
-#   azs            = data.aws_availability_zones.available.names
-#   public_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+  name           = "k8s-terraform-smaple-vpc"
+  cidr           = var.vpc_cidr
+  azs            = data.aws_availability_zones.available.names
+  public_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
 
-#   public_subnet_tags = {
-#     "kubernetes.io/cluster/${local.cluster_name}" = "shared"
-#     "kubernetes.io/role/elb"                      = "1"
-#   }
-# }
+  public_subnet_tags = {
+    "kubernetes.io/cluster/${local.cluster_name}" = "shared"
+    "kubernetes.io/role/elb"                      = "1"
+  }
+}
 
 resource "aws_vpc" "default" {
   cidr_block = var.vpc_cidr
