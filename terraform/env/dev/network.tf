@@ -15,7 +15,7 @@ module "vpc" {
   }
 }
 
-## 不使用
+## -----------不使用-----------
 
 # resource "aws_vpc" "default" {
 #   cidr_block = var.vpc_cidr

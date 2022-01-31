@@ -8,10 +8,10 @@ module "eks" {
 
   node_groups = {
     ng-1 = {
-      desired_capacity = 2
-      max_capacity     = 2
-      min_capacity     = 2
-      instance_types   = ["t3.small"]
+      desired_capacity        = 2
+      max_capacity            = 2
+      min_capacity            = 2
+      instance_types          = ["t3.small"]
       launch_template_id      = aws_launch_template.eks_sample.id
       launch_template_version = aws_launch_template.eks_sample.latest_version
     }

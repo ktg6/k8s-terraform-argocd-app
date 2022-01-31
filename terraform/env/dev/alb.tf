@@ -26,7 +26,7 @@ resource "aws_lb_listener" "https" {
   port              = "443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
-#   certificate_arn   = 
+  certificate_arn   = aws_acm_certificate.acm_cert.arn
 
   default_action {
     type = "fixed-response"
@@ -46,5 +46,16 @@ resource "aws_lb_target_group" "sample_alb_tg" {
 
   lifecycle {
     create_before_destroy = true
+  }
+}
+
+resource "aws_route53_record" "alb_record" {
+  type    = "A"
+  name    = var.domain
+  zone_id = data.aws_route53_zone.aws_intro_sample_ktg.id
+  alias {
+    name                   = aws_lb.sample_alb.dns_name
+    zone_id                = aws_lb.sample_alb.zone_id
+    evaluate_target_health = true
   }
 }

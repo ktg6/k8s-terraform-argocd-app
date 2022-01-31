@@ -31,3 +31,5 @@ variable "ingress_ports" {
   description = "list of ingress ports"
   default     = [80, 443]
 }
+
+variable "domain" {}
