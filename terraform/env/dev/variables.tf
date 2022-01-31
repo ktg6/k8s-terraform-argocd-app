@@ -25,3 +25,9 @@ variable "private_subnet_cidrs" {
 variable "vpc_cidr" {
   default = "10.0.0.0/16"
 }
+
+variable "ingress_ports" {
+  type        = list(number)
+  description = "list of ingress ports"
+  default     = [80, 443]
+}

@@ -1,8 +1,8 @@
 data "aws_availability_zones" "available" {}
 
 module "vpc" {
-  source  = "terraform-aws-modules/vpc/aws"
-  version = "3.11.3"
+  source          = "terraform-aws-modules/vpc/aws"
+  version         = "3.11.3"
   name            = "k8s-terraform-smaple-vpc"
   cidr            = var.vpc_cidr
   azs             = data.aws_availability_zones.available.names
