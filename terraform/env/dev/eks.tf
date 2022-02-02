@@ -9,13 +9,16 @@ module "eks" {
   node_groups = {
     ng-1 = {
       desired_capacity        = 2
-      max_capacity            = 2
+      max_capacity            = 4
       min_capacity            = 2
       instance_types          = ["t3.small"]
       launch_template_id      = aws_launch_template.eks_sample.id
       launch_template_version = aws_launch_template.eks_sample.latest_version
+      iam_role_arn            = aws_iam_role.eks_node_role.arn
     }
   }
+
+  write_kubeconfig = false
 }
 
 data "aws_eks_cluster" "cluster" {
