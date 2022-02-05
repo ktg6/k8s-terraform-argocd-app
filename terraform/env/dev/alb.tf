@@ -21,22 +21,22 @@ resource "aws_lb_listener" "http" {
   }
 }
 
-resource "aws_lb_listener" "https" {
-  load_balancer_arn = aws_lb.sample_alb.arn
-  port              = "443"
-  protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = aws_acm_certificate.acm_cert.arn
+# resource "aws_lb_listener" "https" {
+#   load_balancer_arn = aws_lb.sample_alb.arn
+#   port              = "443"
+#   protocol          = "HTTPS"
+#   ssl_policy        = "ELBSecurityPolicy-2016-08"
+#   certificate_arn   = aws_acm_certificate.acm_cert.arn
 
-  default_action {
-    type = "fixed-response"
-    fixed_response {
-      content_type = "text/plain"
-      status_code  = "200"
-      message_body = "ok"
-    }
-  }
-}
+#   default_action {
+#     type = "fixed-response"
+#     fixed_response {
+#       content_type = "text/plain"
+#       status_code  = "200"
+#       message_body = "ok"
+#     }
+#   }
+# }
 
 resource "aws_lb_target_group" "sample_alb_tg" {
   name     = "eks-sample-tg"

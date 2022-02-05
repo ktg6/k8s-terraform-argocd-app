@@ -19,6 +19,7 @@ module "eks" {
   }
 
   write_kubeconfig = false
+  enable_irsa      = true
 }
 
 data "aws_eks_cluster" "cluster" {
