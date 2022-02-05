@@ -21,6 +21,7 @@ resource "aws_lb_listener" "http" {
   }
 }
 
+## acm_certificateが構築できるまでコメントアウト
 # resource "aws_lb_listener" "https" {
 #   load_balancer_arn = aws_lb.sample_alb.arn
 #   port              = "443"
