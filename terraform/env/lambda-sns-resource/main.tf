@@ -1,11 +1,10 @@
 # LB
 resource "aws_lb" "alarm_test_lb" {
   name               = "alarm-exec-nlb"
-  internal           = false
+  internal           = true
   load_balancer_type = "network"
   # 手動でGit管理してないファイルを参照して入力
   subnets            = ["${var.subnet_id_1}", "${var.subnet_id_2}"]
-
   enable_deletion_protection = false
 }
 
