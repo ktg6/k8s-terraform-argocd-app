@@ -4,3 +4,4 @@
 *.tfstate.*
 crash.log
 provider.tf
+secret.txt
