@@ -82,7 +82,7 @@ resource "aws_lambda_function" "example_lambda" {
 
   environment {
     variables = {
-      foo = "bar"
+      HELLO = "World"
     }
   }
 }
