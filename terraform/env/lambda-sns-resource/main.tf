@@ -46,6 +46,12 @@ resource "aws_sns_topic_policy" "alarm_topic_policy" {
   policy = data.aws_iam_policy_document.sns_topic_policy.json
 }
 
+resource "aws_sns_topic_subscription" "lambda_subscription" {
+  topic_arn = aws_sns_topic.alarm_topic.arn
+  protocol  = "lambda"
+  endpoint  = aws_lambda_function.example_lambda.arn
+}
+
 data "aws_iam_policy_document" "sns_topic_policy" {
   statement {
     actions = [

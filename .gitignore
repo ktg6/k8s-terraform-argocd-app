@@ -2,6 +2,7 @@
 **/.terraform/*
 *.tfstate
 *.tfstate.*
+*.tfvars
 crash.log
 provider.tf
 secret.txt
