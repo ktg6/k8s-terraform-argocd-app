@@ -3,7 +3,6 @@ resource "aws_lb" "alarm_test_lb" {
   name               = "alarm-exec-nlb"
   internal           = true
   load_balancer_type = "network"
-  # 手動でGit管理してないファイルを参照して入力
   subnets            = ["${var.subnet_id_1}", "${var.subnet_id_2}"]
   enable_deletion_protection = false
 }
@@ -12,20 +11,20 @@ resource "aws_lb_target_group" "alarm_nlb_tg" {
   name     = "alarm-exec-nlb-tg"
   port     = 80
   protocol = "TCP"
-  # 手動でGit管理してないファイルを参照して入力
   vpc_id   = var.vpc_id 
 }
 
 # cloudwatch alarm
 resource "aws_cloudwatch_metric_alarm" "error_rate" {
   alarm_name                = "error-rate"
-  comparison_operator       = "GreaterThanOrEqualToThreshold"
-  evaluation_periods        = "2"
-  metric_name               = "HTTPCode_Error_Count"
-  namespace                 = "AWS/ELB"
+  comparison_operator       = "GreaterThanThreshold"
+  evaluation_periods        = "1"
+  metric_name               = "UnHealthyHostCount"
+  namespace                 = "AWS/NetworkELB"
   period                    = "300"
   statistic                 = "Sum"
-  threshold                 = "1"
+  threshold                 = "0"
+  datapoints_to_alarm       = 1
   alarm_description         = "This metric monitors Error rate"
   insufficient_data_actions = []
 
@@ -64,7 +63,6 @@ data "aws_iam_policy_document" "sns_topic_policy" {
     condition {
       test     = "StringEquals"
       variable = "aws:SourceOrgID"
-      # 手動でGit管理してないファイルを参照して入力
       values   = [var.ouid]
     }
 
